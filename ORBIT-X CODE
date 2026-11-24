@@ -1,0 +1,529 @@
+
+#include <stdio.h>
+#include <string.h>
+
+/* ORBIT-X: Educational space mission simulator */
+
+/* Mission details */
+char mission[40] = "", craft[40] = "", commander[40] = "";
+
+/* Mission flags */
+int configured=0, checked=0, weatherChecked=0, ready=0;
+int engine=0, nav=0, comm=0, power=0, control=0;
+int fuel=0, payload=0, wind=0, target=0;
+int stage=0, safe=0, aborted=0, success=0;
+int faults=0, recoveries=0;
+int altitude=0, speed=0, battery=100;
+
+/* Safely read numbers, even if user enters letters */
+int number(const char *message, int min, int max)
+{
+    char line[100], extra;
+    int value, ch;
+
+    while (1)
+    {
+        printf("%s", message);
+
+        if (!fgets(line, sizeof(line), stdin))
+            return -1;
+
+        if (!strchr(line, '\n'))
+        {
+            while ((ch=getchar())!='\n' && ch!=EOF) {}
+            puts("Input too long. Try again.");
+            continue;
+        }
+
+        if (sscanf(line, " %d %c", &value, &extra)==1
+            && value>=min && value<=max)
+            return value;
+
+        printf("Enter a number from %d to %d.\n", min, max);
+    }
+}
+
+/* Read names with spaces */
+int nameInput(const char *message, char text[], int size)
+{
+    char line[100];
+    int n, ch;
+
+    while (1)
+    {
+        printf("%s", message);
+
+        if (!fgets(line, sizeof(line), stdin))
+            return 0;
+
+        if (!strchr(line, '\n'))
+        {
+            while ((ch=getchar())!='\n' && ch!=EOF) {}
+            puts("Name too long.");
+            continue;
+        }
+
+        n=(int)strlen(line);
+
+        if (n>0 && line[n-1]=='\n')
+            line[--n]='\0';
+
+        if (n>0 && n<size)
+        {
+            strcpy(text,line);
+            return 1;
+        }
+
+        printf("Enter 1 to %d characters.\n",size-1);
+    }
+}
+
+/* Reset all mission data */
+void reset(void)
+{
+    mission[0]=craft[0]=commander[0]='\0';
+    configured=checked=weatherChecked=ready=0;
+    engine=nav=comm=power=control=0;
+    fuel=payload=wind=target=0;
+    stage=safe=aborted=success=faults=recoveries=0;
+    altitude=speed=0;
+    battery=100;
+}
+
+/* Configure mission */
+void configure(void)
+{
+    if (stage || aborted || success)
+    {
+        puts("Reset before starting another mission.");
+        return;
+    }
+
+    if (!nameInput("Mission name: ",mission,40) ||
+        !nameInput("Spacecraft: ",craft,40) ||
+        !nameInput("Commander: ",commander,40))
+        return;
+
+    target=number("Target orbit (200-800 km): ",200,800);
+    if(target<0)return;
+
+    fuel=number("Fuel (0-100%): ",0,100);
+    if(fuel<0)return;
+
+    payload=number("Payload (0-30000 kg): ",0,30000);
+    if(payload<0)return;
+
+    configured=1;
+    checked=weatherChecked=ready=0;
+
+    puts("Mission configured.");
+    puts("Run diagnostics and weather checks.");
+}
+
+/* Check spacecraft systems */
+void diagnostics(void)
+{
+    if (!configured || stage)
+    {
+        puts("Diagnostics allowed only before launch, after setup.");
+        return;
+    }
+
+    puts("Enter 1 = PASS, 0 = FAIL:");
+
+    engine=number("Engine: ",0,1);
+    if(engine<0)return;
+
+    nav=number("Navigation: ",0,1);
+    if(nav<0)return;
+
+    comm=number("Communication: ",0,1);
+    if(comm<0)return;
+
+    power=number("Power: ",0,1);
+    if(power<0)return;
+
+    control=number("Flight control: ",0,1);
+    if(control<0)return;
+
+    checked=1;
+    ready=0;
+
+    if(engine && nav && comm && power && control)
+        puts("Diagnostics PASS");
+    else
+        puts("Diagnostics FAIL");
+}
+
+/* Weather assessment */
+void weather(void)
+{
+    if (!configured || stage)
+    {
+        puts("Weather check allowed only before launch, after setup.");
+        return;
+    }
+
+    wind=number("Wind speed (0-250 km/h): ",0,250);
+    if(wind<0)return;
+
+    weatherChecked=1;
+    ready=0;
+
+    if(wind<=50)
+        puts("Weather PASS");
+    else
+        puts("Weather NO-GO");
+}
+
+/* Check whether launch is allowed */
+void readiness(void)
+{
+    if (!configured || !checked || !weatherChecked || stage)
+    {
+        puts("Complete setup, diagnostics and weather checks.");
+        return;
+    }
+
+    ready=engine && nav && comm && power && control
+          && wind<=50 && fuel>=70 && payload<=20000;
+
+    printf("Systems passed: %d/5\n",
+           engine+nav+comm+power+control);
+
+    printf("Fuel: %d%% | Payload: %d kg | Wind: %d km/h\n",
+           fuel,payload,wind);
+
+    if(fuel>=70 && fuel<80)
+        puts("WARNING: Low simulated fuel margin.");
+
+    if(!engine || !nav || !comm || !power || !control)
+        puts("Problem: Critical system failure.");
+
+    if(wind>50)
+        puts("Problem: Unsafe wind.");
+
+    if(fuel<70)
+        puts("Problem: Insufficient fuel.");
+
+    if(payload>20000)
+        puts("Problem: Excess payload.");
+
+    if(ready)
+        puts("GO FOR LAUNCH");
+    else
+        puts("NO-GO: Launch blocked");
+}
+
+/* Display flight data */
+void telemetry(void)
+{
+    if (!configured)
+    {
+        puts("Configure a mission first.");
+        return;
+    }
+
+    printf("\n%s | %s | Commander: %s\n",
+           mission,craft,commander);
+
+    printf("Altitude: %d km | Speed: %d m/s\n",
+           altitude,speed);
+
+    printf("Fuel: %d%% | Battery: %d%%\n",fuel,battery);
+
+    if(aborted)
+        puts("Status: ABORTED");
+    else if(success)
+        puts("Status: ORBIT ACHIEVED");
+    else if(safe)
+        puts("Status: SAFE MODE");
+    else if(stage)
+        printf("Status: IN FLIGHT (stage %d/4)\n",stage);
+    else if(ready)
+        puts("Status: READY");
+    else
+        puts("Status: PRE-LAUNCH");
+}
+
+/* Launch and advance flight */
+void fly(void)
+{
+    int i;
+
+    if (!ready || aborted || success)
+    {
+        puts("Launch blocked: obtain GO status or reset mission.");
+        return;
+    }
+
+    if(safe)
+    {
+        puts("Recover from Safe Mode first.");
+        return;
+    }
+
+    if(!stage)
+    {
+        for(i=10;i>=1;i--)
+            printf("T-%d\n",i);
+
+        puts("IGNITION... LIFTOFF!");
+    }
+
+    stage++;
+    fuel-=12;
+    battery-=8;
+
+    if(stage==1)
+    {
+        altitude=20;
+        speed=1000;
+        puts("Stage 1: ASCENT");
+    }
+    else if(stage==2)
+    {
+        altitude=90;
+        speed=3500;
+        puts("Stage 2: UPPER ATMOSPHERE");
+    }
+    else if(stage==3)
+    {
+        altitude=170;
+        speed=6000;
+        puts("Stage 3: SEPARATION SUCCESS");
+    }
+    else if(stage==4)
+    {
+        altitude=target;
+        speed=7700;
+
+        if(fuel>=15 && battery>=20 &&
+           engine && nav && comm && power && control)
+        {
+            success=1;
+            puts("ORBIT ACHIEVED - MISSION SUCCESS!");
+        }
+        else
+        {
+            aborted=1;
+            puts("MISSION TERMINATED: Critical flight condition.");
+        }
+    }
+
+    telemetry();
+}
+
+/* Simulate emergencies and recovery */
+void emergency(void)
+{
+    int choice, fix;
+
+    if (!stage || success || aborted)
+    {
+        puts("Emergency controls work only during active flight.");
+        return;
+    }
+
+    puts("1.Communication failure  2.Power failure");
+    puts("3.Navigation failure     4.Engine failure");
+    puts("5.Recover  6.Abort  7.Back");
+
+    choice=number("Choice: ",1,7);
+
+    if(choice<0 || choice==7)
+        return;
+
+    if(choice==6)
+    {
+        aborted=1;
+        safe=0;
+        puts("MISSION ABORTED.");
+        return;
+    }
+
+    if(choice==5)
+    {
+        if(!safe)
+        {
+            puts("Not in Safe Mode.");
+            return;
+        }
+
+        if(battery<20)
+        {
+            puts("Recovery unavailable: low battery.");
+            return;
+        }
+
+        engine=nav=comm=power=1;
+        safe=0;
+        recoveries++;
+
+        puts("Recovery successful.");
+        return;
+    }
+
+    if(safe)
+    {
+        puts("Already in Safe Mode. Recover or abort.");
+        return;
+    }
+
+    if(choice==1) comm=0;
+    if(choice==2) power=0;
+    if(choice==3) nav=0;
+    if(choice==4) engine=0;
+
+    faults++;
+    safe=1;
+
+    puts("FAULT DETECTED - SAFE MODE ACTIVE.");
+
+    fix=number("Attempt recovery now? (1=yes, 0=no): ",0,1);
+
+    if(fix==1 && battery>=20)
+    {
+        engine=nav=comm=power=1;
+        safe=0;
+        recoveries++;
+
+        puts("Backup recovery successful.");
+    }
+    else
+    {
+        puts("Flight paused. Use recovery or abort.");
+    }
+}
+
+/* Print mission report */
+void report(void)
+{
+    if(!configured)
+    {
+        puts("No mission to report.");
+        return;
+    }
+
+    printf("\nMISSION REPORT: %s | Spacecraft: %s\n",
+           mission,craft);
+
+    printf("Commander: %s | Target: %d km | Reached: %d km\n",
+           commander,target,altitude);
+
+    printf("Fuel: %d%% | Faults: %d | Recoveries: %d\n",
+           fuel,faults,recoveries);
+
+    if(aborted)
+        puts("FINAL: ABORTED");
+    else if(success)
+        puts("FINAL: SUCCESS");
+    else if(safe)
+        puts("FINAL: SAFE MODE");
+    else if(stage)
+        puts("FINAL: IN FLIGHT");
+    else
+        puts("FINAL: NOT LAUNCHED");
+}
+
+/* Main program */
+int main(void)
+{
+    int choice, confirm;
+
+    puts("=== ORBIT-X: SPACE MISSION CONTROL SIMULATOR ===");
+    puts("Educational model: NOT real launch criteria.");
+
+    while(1)
+    {
+        puts("\n1.Configure  2.Diagnostics  3.Weather");
+        puts("4.Fuel/Payload  5.Readiness  6.Next Flight Step");
+        puts("7.Telemetry  8.Emergency  9.Report");
+        puts("10.Reset  11.About  12.Exit");
+
+        choice=number("MISSION CONTROL > ",1,12);
+
+        if(choice<0)
+            break;
+
+        switch(choice)
+        {
+            case 1:
+                configure();
+                break;
+
+            case 2:
+                diagnostics();
+                break;
+
+            case 3:
+                weather();
+                break;
+
+            case 4:
+                if(!configured)
+                    puts("Configure a mission first.");
+                else
+                {
+                    printf("Fuel: %d%% | Payload: %d kg\n",
+                           fuel,payload);
+
+                    if(fuel<70 || payload>20000)
+                        puts("NO-GO: Fuel/payload limit");
+                    else if(fuel<80)
+                        puts("PASS with low fuel margin");
+                    else
+                        puts("Fuel and payload PASS");
+                }
+                break;
+
+            case 5:
+                readiness();
+                break;
+
+            case 6:
+                fly();
+                break;
+
+            case 7:
+                telemetry();
+                break;
+
+            case 8:
+                emergency();
+                break;
+
+            case 9:
+                report();
+                break;
+
+            case 10:
+                confirm=number("Reset mission? (1=yes, 0=no): ",0,1);
+
+                if(confirm==1)
+                {
+                    reset();
+                    puts("Mission reset.");
+                }
+                break;
+
+            case 11:
+                puts("ORBIT-X v1.0: Basic C educational simulation.");
+                puts("Limits: fuel >=70%, payload <=20000 kg,");
+                puts("wind <=50 km/h. All limits are simulated.");
+                break;
+
+            case 12:
+                confirm=number("Exit? (1=yes, 0=no): ",0,1);
+
+                if(confirm==1)
+                {
+                    puts("Mission Control Offline.");
+                    return 0;
+                }
+                break;
+        }
+    }
+
+    return 0;
+}

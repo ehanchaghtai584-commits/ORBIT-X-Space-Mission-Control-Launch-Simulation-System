@@ -1,0 +1,133 @@
+# 🚀 The Science Behind ORBIT-X
+
+**How does a spacecraft travel from Earth to orbit, and what determines whether a launch succeeds or fails?**
+
+ORBIT-X explores these questions through a simplified space mission simulation built using C programming.
+
+Inspired by real aerospace engineering concepts, the project introduces the fundamental principles behind spacecraft launches, mission monitoring, and emergency decision-making.
+
+## 1. Pre-Launch Diagnostics — Is the Spacecraft Ready?
+
+Before a rocket launches, engineers evaluate critical systems to ensure they are functioning correctly.
+
+ORBIT-X simulates five essential checks:
+
+- **Engine:** Provides the thrust needed for launch.
+- **Navigation:** Helps determine the spacecraft's position and trajectory.
+- **Communication:** Allows information exchange with mission control.
+- **Power:** Supplies electricity to spacecraft systems.
+- **Flight Control:** Helps maintain the required orientation and flight path.
+
+A critical system failure results in a **NO-GO** decision.
+
+## 2. GO/NO-GO — The Science of Launch Decisions
+
+Rocket launches require multiple systems and environmental conditions to meet predefined safety and operational requirements.
+
+ORBIT-X evaluates:
+
+- Spacecraft system health
+- Available fuel
+- Payload mass
+- Wind conditions
+
+If every simulated requirement is satisfied, the program authorizes launch.
+
+If a critical requirement fails, launch is denied.
+
+**Important:** ORBIT-X uses educational thresholds rather than actual aerospace launch criteria.
+
+## 3. Rocket Propulsion — How Rockets Lift Off
+
+Rockets operate according to **Newton's Third Law of Motion**:
+
+*For every action, there is an equal and opposite reaction.*
+
+A rocket engine expels high-speed exhaust gases backward, producing forward thrust.
+
+For liftoff, the rocket must generate sufficient thrust to overcome its weight and other opposing forces.
+
+ORBIT-X represents this process through ignition, liftoff, and ascent stages.
+
+## 4. Rocket Staging — Why Rockets Separate
+
+Many rockets use multiple stages to improve performance.
+
+Once a stage has completed its purpose, separating it reduces the mass carried by the remaining rocket.
+
+This allows subsequent stages to accelerate the spacecraft more efficiently.
+
+ORBIT-X includes a simplified stage-separation event during ascent.
+
+## 5. Orbital Mechanics — How Spacecraft Stay in Orbit
+
+A spacecraft does not remain in orbit simply because it reaches a high altitude.
+
+It must also achieve an appropriate **horizontal velocity** so that gravity continuously bends its path around Earth.
+
+For an ideal circular orbit:
+
+**Orbital Velocity = √(GM/r)**
+
+Where:
+
+- **G** = Universal gravitational constant
+- **M** = Mass of Earth
+- **r** = Distance from Earth's center
+
+For example, a spacecraft in a circular orbit approximately 400 km above Earth travels at roughly **7.7 km/s**.
+
+ORBIT-X uses simplified altitude and velocity values to represent orbit insertion. It does not numerically solve orbital trajectories.
+
+## 6. Flight Telemetry — Monitoring the Spacecraft
+
+Telemetry refers to measurements transmitted from a spacecraft to monitoring systems.
+
+Important measurements can include:
+
+- Altitude
+- Velocity
+- Fuel level
+- Battery level
+- Temperature
+- System health
+
+ORBIT-X displays simulated telemetry during different flight stages, allowing users to observe changes as the mission progresses.
+
+## 7. Fault Detection and Safe Mode
+
+Spacecraft can encounter unexpected problems, including communication interruptions, power failures, navigation issues, and propulsion anomalies.
+
+Engineers design fault-protection systems to detect problems and respond appropriately.
+
+ORBIT-X demonstrates a simplified process:
+
+**Fault Detected → Safe Mode → Recovery Attempt → Continue or Abort**
+
+Safe Mode represents a protective operating state intended to preserve essential spacecraft functions.
+
+The simulator uses predefined recovery rules rather than actual spacecraft repair procedures.
+
+## 8. Mission Success — What Does Reaching Orbit Mean?
+
+A successful orbital mission requires more than liftoff.
+
+The spacecraft must complete its required flight phases and satisfy the conditions necessary for the intended orbit.
+
+ORBIT-X simulates:
+
+**Countdown → Liftoff → Ascent → Stage Separation → Orbit Insertion → Mission Success**
+
+If the simulated mission conditions are not satisfied, the program reports failure or allows an emergency abort.
+
+---
+
+## What ORBIT-X Teaches
+
+ORBIT-X connects **computer programming with fundamental aerospace engineering concepts**.
+
+It demonstrates how conditional logic, mathematical calculations, system monitoring, and predefined decision rules can model selected aspects of complex engineering operations.
+
+The project is an educational simulation, not real spacecraft flight software. Its physics, thresholds, telemetry, and recovery procedures are intentionally simplified.
+
+**ORBIT-X demonstrates how even fundamental programming concepts can help us understand the logic behind space exploration.**

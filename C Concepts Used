@@ -1,0 +1,47 @@
+# 💻 C Programming Concepts Used in ORBIT-X
+
+ORBIT-X demonstrates how fundamental C programming concepts can be combined to create an interactive space mission simulator.
+
+Instead of using these concepts only for textbook exercises, I applied them to spacecraft diagnostics, launch decisions, flight simulation, and emergency management.
+
+| C Concept | Application in ORBIT-X |
+|---|---|
+| **Variables** | Store fuel, payload, altitude, velocity, battery level, and system conditions. |
+| **Data Types (`int`, `char`)** | Represent numerical measurements, flags, and mission information. |
+| **Conditional Statements (`if/else`)** | Determine GO/NO-GO decisions, mission success, and failure responses. |
+| **Logical Operators (`&&`, `||`, `!`)** | Combine multiple spacecraft safety conditions. |
+| **`switch` Statement** | Manage the interactive mission-control menu. |
+| **`for` Loop** | Simulate the launch countdown from T-10 to T-1. |
+| **`while` Loop** | Keep the simulator running and validate user input. |
+| **Functions** | Organize configuration, diagnostics, launch, telemetry, and emergency operations. |
+| **Strings** | Store mission names, spacecraft names, and commander details. |
+| **Character Arrays** | Hold text input and support basic input validation. |
+| **Flags** | Track whether the spacecraft is ready, launched, in Safe Mode, aborted, or successful. |
+| **Arithmetic Operators** | Calculate simplified fuel consumption, battery usage, and readiness statistics. |
+| **Input Validation** | Reject invalid values and prevent incorrect operations. |
+
+### Example: GO/NO-GO Decision Logic
+
+```c
+if (engine && navigation && communication
+    && power && control)
+{
+    printf("GO FOR LAUNCH");
+}
+else
+{
+    printf("NO-GO: SYSTEM FAILURE");
+}
+```
+
+The `&&` operator requires every condition to be true.
+
+If even one critical system fails, the launch is denied.
+
+In the complete simulator, weather, fuel, and payload conditions are also considered.
+
+### What This Demonstrates
+
+ORBIT-X shows that meaningful software does not always require advanced algorithms or complex libraries.
+
+**Good problem-solving begins with clear logic, well-organized functions, and reliable decision-making.**

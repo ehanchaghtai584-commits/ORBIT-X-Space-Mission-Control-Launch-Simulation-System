@@ -1,0 +1,86 @@
+# ⚠️ Limitations & Assumptions
+
+ORBIT-X is an **educational spacecraft mission simulator developed using C programming**.
+
+Its purpose is to demonstrate mission-control logic, basic aerospace concepts, and programming fundamentals—not to reproduce the complexity of real spacecraft operations.
+
+### 1. Simplified Orbital Physics
+
+ORBIT-X uses predefined altitude and velocity values to represent different flight stages.
+
+It does not calculate a spacecraft's complete trajectory using gravitational forces, atmospheric drag, thrust, or numerical orbital integration.
+
+Reaching the target altitude in the simulation does not prove that a physically valid orbit has been achieved.
+
+### 2. Simulated Launch Requirements
+
+The program uses simplified launch conditions:
+
+| Parameter | Educational Requirement |
+|---|---|
+| Minimum Fuel | 70% |
+| Maximum Payload | 20,000 kg |
+| Maximum Wind Speed | 50 km/h |
+| Critical Spacecraft Systems | All must pass |
+
+These values are project assumptions and **must not be interpreted as actual NASA or aerospace launch limits**.
+
+### 3. Simplified Fuel and Power Consumption
+
+Fuel and battery levels decrease by predefined amounts during flight stages.
+
+Actual spacecraft consumption depends on propulsion systems, mission duration, mass, power requirements, and operating conditions.
+
+### 4. Manual System Diagnostics
+
+Users manually enter whether spacecraft systems are operational.
+
+The simulator does not communicate with real sensors, spacecraft hardware, or ground-control infrastructure.
+
+### 5. Simplified Emergency Handling
+
+System failures are introduced through user selections.
+
+Safe Mode and recovery are represented through predefined programming rules rather than actual spacecraft fault-management algorithms.
+
+### 6. No Real-Time Spacecraft Data
+
+All telemetry values are generated within the simulator.
+
+ORBIT-X does not connect to NASA mission systems, live satellites, or real spacecraft telemetry.
+
+### 7. Console-Based Interface
+
+The project operates through a text-based terminal.
+
+It does not currently include 3D visualization, interactive orbital graphics, or a graphical mission-control dashboard.
+
+### 8. Limited Mission Scope
+
+The current version focuses on a simplified Earth-orbit mission.
+
+It does not simulate interplanetary travel, spacecraft docking, atmospheric re-entry, or realistic landing operations.
+
+---
+
+## Why These Limitations Exist
+
+ORBIT-X was developed as a first-semester C programming project.
+
+The objective was to balance **scientific inspiration, programming complexity, and educational value**.
+
+Rather than attempting an inaccurate recreation of real aerospace software, the simulator focuses on demonstrating selected mission-control concepts through understandable programming logic.
+
+### Future Improvements
+
+Potential upgrades include:
+
+- Physics-based orbital velocity calculations.
+- More realistic fuel and propulsion models.
+- Graphical spacecraft telemetry.
+- Randomized failure scenarios.
+- Advanced fault-recovery algorithms.
+- Orbital trajectory visualization.
+- Support for different planets and mission types.
+
+**ORBIT-X is a learning platform, not flight-control software.**

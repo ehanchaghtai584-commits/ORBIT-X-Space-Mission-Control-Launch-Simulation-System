@@ -1,0 +1,194 @@
+# 🚀 Try to Break My Mission!
+
+**Think you can successfully launch a spacecraft? Or can you find a way to make ORBIT-X fail?**
+
+Welcome to the ORBIT-X Mission Challenge!
+
+ORBIT-X isn't just a program you run once. It's an interactive simulation where your decisions determine whether a spacecraft reaches orbit, encounters a critical failure, or aborts its mission.
+
+Your challenge is simple:
+
+**Run the simulator, experiment with different mission conditions, and discover how ORBIT-X responds.**
+
+## Challenge 1 — The Perfect Launch
+
+**Difficulty: Easy**
+
+Your mission is to launch a spacecraft successfully without triggering any system failures.
+
+**Mission configuration:**
+
+| Parameter | Value |
+|---|---|
+| Mission Name | AURORA-1 |
+| Target Altitude | 400 km |
+| Fuel Level | 95% |
+| Payload | 12,000 kg |
+| Wind Speed | 20 km/h |
+| All Spacecraft Systems | PASS |
+
+**Your tasks:**
+1. Configure the mission.
+2. Complete all five spacecraft diagnostics.
+3. Perform the weather assessment.
+4. Obtain GO FOR LAUNCH.
+5. Complete all four flight stages.
+
+**Expected Result:** MISSION SUCCESS — ORBIT ACHIEVED
+
+**What you'll learn:** A successful mission requires several interconnected systems to meet their operational requirements.
+
+---
+
+## Challenge 2 — The Hidden Navigation Failure
+
+**Difficulty: Medium**
+
+Everything looks perfect. The rocket has enough fuel, the weather is clear, and the engine is operational.
+
+But there's one problem.
+
+**Navigation System: FAIL**
+
+Your mission is to discover whether ORBIT-X allows the launch.
+
+**Your tasks:**
+1. Configure a mission with sufficient fuel.
+2. Set the navigation system to FAIL during diagnostics.
+3. Keep the other systems operational.
+4. Run the launch-readiness test.
+5. Attempt to launch.
+
+**Expected Result:** NO-GO — LAUNCH BLOCKED
+
+**What you'll learn:** A critical system failure can prevent launch even when other conditions are favorable.
+
+---
+
+## Challenge 3 — The Fuel Crisis
+
+**Difficulty: Medium**
+
+Your spacecraft is technically operational, but its fuel level is dangerously low.
+
+**Mission configuration:**
+
+- Fuel: 55%
+- Payload: 12,000 kg
+- Weather: Safe
+- All systems: PASS
+
+**Your tasks:**
+1. Configure the mission.
+2. Complete diagnostics and weather assessment.
+3. Run the launch-readiness test.
+4. Attempt to launch.
+
+**Expected Result:** NO-GO — INSUFFICIENT FUEL
+
+**What you'll learn:** Engineering decisions must consider resource constraints, not just whether individual systems are functioning.
+
+---
+
+## Challenge 4 — Emergency in Space
+
+**Difficulty: Hard**
+
+Your spacecraft has successfully launched.
+
+Suddenly, communication with Mission Control is lost!
+
+**Your tasks:**
+1. Configure a successful mission.
+2. Obtain GO status.
+3. Launch the spacecraft.
+4. Open Emergency Control.
+5. Simulate a communication failure.
+6. Observe Safe Mode.
+7. Attempt recovery.
+
+**Expected Result:** FAULT DETECTED → SAFE MODE → RECOVERY → CONTINUE
+
+**What you'll learn:** Some spacecraft faults can be managed through protective operating states and recovery procedures rather than immediately ending a mission.
+
+---
+
+## Challenge 5 — The Mission Abort
+
+**Difficulty: Hard**
+
+Not every mission ends successfully.
+
+Your task is to deliberately terminate a mission after launch.
+
+**Your tasks:**
+1. Configure and launch a mission.
+2. Enter the Emergency Control menu.
+3. Select the Abort option.
+4. Check the mission report.
+5. Attempt to continue the flight.
+
+**Expected Result:** MISSION ABORTED — FURTHER FLIGHT BLOCKED
+
+**What you'll learn:** Mission-state control prevents invalid operations after a mission has ended.
+
+---
+
+## Challenge 6 — Break the Program
+
+**Difficulty: Expert**
+
+Can you find an input or sequence of actions that the program doesn't handle correctly?
+
+Try these experiments:
+
+- Enter letters instead of numbers.
+- Enter a negative fuel value.
+- Enter an invalid menu choice.
+- Attempt launch before configuration.
+- Attempt launch twice.
+- Trigger an emergency before liftoff.
+- Try to continue after aborting.
+- Enter an excessively long mission name.
+
+**Expected Result:** ORBIT-X should reject invalid operations without crashing, hanging, or entering an impossible mission state.
+
+**What you'll learn:** Reliable software must handle incorrect inputs and unexpected user behavior, not just ideal scenarios.
+
+---
+
+## Your Mission Challenge Checklist
+
+- [ ] Successfully reach orbit.
+- [ ] Trigger a NO-GO decision.
+- [ ] Cause a fuel-related launch rejection.
+- [ ] Simulate an in-flight failure.
+- [ ] Recover from Safe Mode.
+- [ ] Abort a mission.
+- [ ] Test invalid inputs.
+- [ ] Generate a final mission report.
+
+## Found a Bug?
+
+If you discover unexpected behavior, document:
+
+1. What you entered.
+2. What you expected to happen.
+3. What actually happened.
+4. How to reproduce the issue.
+
+You can report reproducible problems through the repository's **GitHub Issues** section, if enabled.
+
+---
+
+### The Real Challenge
+
+**Can you make ORBIT-X fail in a way its programming logic wasn't prepared for?**
+
+The purpose isn't just to launch a spacecraft successfully.
+
+It's to understand how engineering systems make decisions, respond to failures, and recover from unexpected situations.
+
+**Experiment. Break things. Understand why. Improve the system.**
+
+*ORBIT-X is an educational C simulation with simplified spacecraft physics and predefined safety rules. It is not real aerospace flight-control software.*

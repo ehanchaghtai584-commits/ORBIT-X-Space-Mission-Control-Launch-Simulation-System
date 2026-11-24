@@ -1,0 +1,95 @@
+#  What Building ORBIT-X Taught Me
+
+**I started with basic C programming. I ended up building a space mission simulator.**
+
+When I first started learning C in my first semester of B.Tech Computer Science, I was familiar with concepts like `if/else`, loops, functions, and variables.
+
+Like most beginners, I initially thought these concepts were useful only for solving textbook problems.
+
+But I wanted to build something different.
+
+Instead of creating another library or hostel management system, I decided to explore something that genuinely interested me—**space exploration**.
+
+That's how ORBIT-X started.
+
+### 1. Programming Is More About Logic Than Syntax
+
+One of my biggest takeaways was realizing that writing code isn't just about knowing commands.
+
+It's about understanding a problem and breaking it into smaller, logical steps.
+
+For example, deciding whether a spacecraft is ready for launch requires checking multiple conditions.
+
+A single critical failure can change the entire outcome.
+
+Building the GO/NO-GO system helped me understand how simple conditional statements can work together to model complex decisions.
+
+### 2. Functions Make Complex Projects Manageable
+
+Initially, a large C program seemed overwhelming.
+
+But dividing ORBIT-X into smaller functions made it easier to understand, debug, and improve.
+
+Each function had a specific responsibility—from mission configuration and diagnostics to flight simulation and emergency handling.
+
+**I learned that good code isn't necessarily shorter code. It's code that is easier to understand and maintain.**
+
+### 3. Errors Are Part of Building Something Real
+
+Not everything worked perfectly on the first attempt.
+
+I encountered compilation and execution problems, including issues with running the program through the VS Code terminal.
+
+I also realized that a program shouldn't work only when the user enters perfect inputs.
+
+It needs to handle invalid values, missing mission configurations, repeated launch attempts, and unexpected decisions.
+
+This taught me the importance of **testing, debugging, and defensive programming**.
+
+### 4. Building a Simulation Requires Understanding the Subject
+
+ORBIT-X wasn't just a C programming exercise.
+
+To design its features, I had to explore concepts such as spacecraft diagnostics, rocket staging, orbital velocity, flight telemetry, and emergency recovery.
+
+I also learned the difference between a simplified educational simulation and real aerospace engineering software.
+
+That distinction helped me think more carefully about what my program could realistically demonstrate.
+
+### 5. AI Can Help, but Understanding Still Matters
+
+AI tools helped me explore ideas, organize the program, understand unfamiliar concepts, and identify possible improvements.
+
+But generating code wasn't the real challenge.
+
+The challenge was understanding the logic, recognizing limitations, testing the program, and making sure I could explain what it was doing.
+
+**I learned that using AI effectively means questioning its output, not blindly accepting it.**
+
+### 6. Start Small, Then Improve
+
+ORBIT-X began as an idea.
+
+Gradually, it developed into a project with launch-readiness checks, mission states, telemetry, emergency handling, Safe Mode, and mission reporting.
+
+This experience taught me that I don't need to know every advanced programming concept before starting a meaningful project.
+
+I need a clear problem, a willingness to learn, and the patience to improve my work.
+
+---
+
+## My Biggest Takeaway
+
+**ORBIT-X changed the way I look at programming.**
+
+I no longer see C as just a subject where I write programs to get the correct output.
+
+I see it as a tool for turning ideas into working systems.
+
+And perhaps the most important lesson was this:
+
+**You don't have to wait until you know everything to start building something interesting.**
+
+You just have to start—and keep learning along the way.
+
+*ORBIT-X is my first step toward exploring the intersection of programming, engineering, and space technology.*

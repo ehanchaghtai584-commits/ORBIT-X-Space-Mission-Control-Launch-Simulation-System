@@ -1,0 +1,27 @@
+MISSION CONFIGURATION
+        ↓
+SPACECRAFT DIAGNOSTICS
+        ↓
+WEATHER + FUEL CHECKS
+        ↓
+    GO / NO-GO
+      ↙     ↘
+   NO-GO     GO
+     ↓        ↓
+  FIX ISSUE  COUNTDOWN
+              ↓
+            LIFTOFF
+              ↓
+         FLIGHT TELEMETRY
+              ↓
+       FAULT DETECTED?
+          ↙       ↘
+        YES        NO
+         ↓          ↓
+     SAFE MODE    CONTINUE
+         ↓          ↓
+     RECOVER      ORBIT
+      /   \         ↓
+ CONTINUE ABORT   SUCCESS
+        \   |      /
+         MISSION REPORT
